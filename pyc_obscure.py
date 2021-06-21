@@ -70,6 +70,7 @@ class Obscure:
 
     def new_code_object(self,
                         argcount       = None,
+                        posonlyargcount= None,
                         kwonlyargcount = None,
                         nlocals        = None,
                         stacksize      = None,
@@ -87,6 +88,8 @@ class Obscure:
                         ):
         if argcount is None:
             argcount = self.co.co_argcount
+        if posonlyargcount is None:
+            posonlyargcount =self.co.co_posonlyargcount
         if kwonlyargcount is None:
             kwonlyargcount = self.co.co_kwonlyargcount
         if nlocals is None:
@@ -118,7 +121,8 @@ class Obscure:
 
         return types.CodeType(
             argcount,
-            kwonlyargcount,
+            posonlyargcount,
+            kwonlyargcount,            
             nlocals,
             stacksize,
             flags,
